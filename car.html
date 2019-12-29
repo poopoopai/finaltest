@@ -53,11 +53,10 @@
                   });
               });
 
-            // $("#delete").click(function(){
-            //     var delete_list          = $('#delete').val();
-            //     console.log(delete_list);
-            //     removeUser(delete_list);
-            // });
+              $("#delete").click(function(){
+                var userId          = $('#delete_list').val();
+                removeUser(userId);
+            });
         });
 
         function display_posts(data_val){
@@ -68,6 +67,7 @@
               var count = 0 ;
               for (var i = keys.length - 1; i >= 0; i--) {
                   if(data_val[keys[i]]['userid'] === firebase.auth().currentUser.uid){
+                    posts += '商品編號: '+[keys[i]]+'<br>';
                     posts += '商品型號: '+data_val[keys[i]]['brandname']+'<br>';
                     posts += '商品尺寸: '+data_val[keys[i]]['brandsize']+'<br>';
                     posts += '鞋身寬度: '+data_val[keys[i]]['brandwidth']+'<br>';
@@ -95,7 +95,8 @@
                 for (var i = keys.length - 1; i >= 0; i--) {
                     if(data_val[keys[i]]['userid'] === firebase.auth().currentUser.uid){
                       if(data_val[keys[i]]['brandname'] === search){
-                        posts += '<input type="hidden" value='+keys[i]+'>商品型號: '+data_val[keys[i]]['brandname']+'<br>';
+                        posts += '商品編號: '+[keys[i]]+'<br>';
+                        posts += '商品型號: '+data_val[keys[i]]['brandname']+'<br>';
                         posts += '商品尺寸: '+data_val[keys[i]]['brandsize']+'<br>';
                         posts += '鞋身寬度: '+data_val[keys[i]]['brandwidth']+'<br>';
                         posts += '商品單價格: '+data_val[keys[i]]['brandprice']+'<br>';
@@ -114,10 +115,10 @@
                 }
             }
 
-            // function removeUser(delete_list) {
-            // db.ref('users/' + delete_list).remove();   
-            // }        
-         
+            function removeUser(userId) {
+              db.ref('cars/' + userId).remove();       
+            }    
+
   </script>
   <style>
     .text-muted a{
@@ -146,11 +147,19 @@
             <div>
               <h6 class="my-0">Product list</h6>
               <small class="text-muted" id="data">
-                
+                  
               </small>
             </div>
             
           </li>
+          
+            <div class="input-group">
+              <input id="delete_list" type="text" class="form-control" placeholder="Product code">
+              <div class="input-group-append">
+                <button id="delete" type="submit"  class="btn btn-secondary">刪除訂單</button>
+              </div>
+            </div>
+          
           <br>
               <div class="input-group">
                 <input id="search" type="text" class="form-control" placeholder="Search Product">
@@ -158,7 +167,7 @@
                   
                 </div>
               </div>
-              
+             
         </ul>
       </div>
       <div class="col-md-8 order-md-1">
