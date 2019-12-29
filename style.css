@@ -1,0 +1,133 @@
+
+.type1 {
+    width: 238px;
+    margin: 15px 6px;
+    display: inline-block;
+    vertical-align: top;
+    }
+    .type {
+        text-align:left;
+    width: 218px;
+    margin: 4px 10px 0 10px;
+    float: left;
+    color: #6b6b6b;
+    font-size: 12px;
+    line-height: 18px;
+    text-transform: uppercase;
+    word-break: break-all;
+    }
+    .title {
+        text-align:left;
+    width: 218px;
+    margin: 15px 10px 0 10px;
+    float: left;
+    color: #000;
+    font-size: 14px;
+    line-height: 22px;
+    text-transform: uppercase;
+    word-break: break-all;
+    }
+    .price{
+        text-align:left;
+        width: 218px;
+        margin: 0 10px;
+        color: #6b6b6b;
+        float: left;
+        font-size: 12px;
+        line-height: 18px;
+        text-transform: uppercase;
+        word-break: break-all;
+    }
+.hover{
+    width: 238px;
+    height: 238px;
+}
+.hover a{
+    position: relative;
+    text-decoration: none;
+    width: 238px;
+    height: 238px;
+    text-align: center;
+    line-height: 50px;
+    display: inline-block;
+    font-size: 24px;
+    color: #262626;
+    background-color: #ffffff;
+  }
+
+.hover a:before{
+  content: '';
+  position: absolute;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: 2px solid transparent;
+}
+.hover a:hover:before{
+  animation: animate 0.2s linear forwards;
+}
+@keyframes animate{
+  0%{
+    width: 0;
+    height: 0;
+    border-top-color: #262626;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: transparent;
+  }
+  50%{
+    width: 100%;
+    height: 0;
+    border-top-color: #262626;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: #262626;
+  }
+  100%{
+    width: 100%;
+    height: 100%;
+    border-top-color: #262626;
+    border-bottom-color: transparent;
+    border-left-color: transparent;
+    border-right-color: #262626;
+  }
+}
+.hover a:after{
+  content: '';
+  position: absolute;
+  left: -1px;
+  width: 0;
+  height: 0;
+  background: transparent;
+  border: 2px solid transparent;
+}
+.hover a:hover:after{
+  animation: animate2 0.2s linear forwards;
+  animation-delay: 0.2s;
+}
+@keyframes animate2{
+  0%{
+    width: 0;
+    height: 0;
+    border-top-color: transparent;
+    border-bottom-color: transparent;
+    border-left-color: #262626;
+    border-right-color: transparent;
+  }
+  50%{
+    width: 0;
+    height: 100%;
+    border-top-color: transparent;
+    border-bottom-color: #262626;
+    border-left-color: #262626;
+    border-right-color: transparent;
+  }
+  100%{
+    width: 100%;
+    height: 100%;
+    border-top-color: transparent;
+    border-bottom-color: #262626;
+    border-left-color: #262626;
+    border-right-color: transparent;
+  }
+}

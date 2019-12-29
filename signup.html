@@ -1,0 +1,98 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Document</title>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <script src="https://code.jquery.com/jquery-3.1.0.min.js"></script>
+	<script src="https://www.gstatic.com/firebasejs/5.7.1/firebase.js"></script>
+	<script>
+	  // Initialize Firebase
+	  var config = {
+	    apiKey: "AIzaSyDboRRHMx5pxNMptdg-_q9aJN-jEoWoQpU",
+        authDomain: "test-77870.firebaseapp.com",
+        databaseURL: "https://test-77870.firebaseio.com",
+        projectId: "test-77870",
+        storageBucket: "test-77870.appspot.com",
+        messagingSenderId: "27672810851"
+	  };
+	  firebase.initializeApp(config);
+	  var db = firebase.database(); 
+	</script>
+
+    
+    <script>
+        // function writeUserData(id, name, email, password) {
+        //   db.ref('users/'+ id).set({
+        //     userid: id,
+        //     username: name,
+        //     email: email,
+        //     password: password
+        //   }).then(function () {alert("成功創建使用者！"); location.href="./index.html"})
+	    //     .catch(function () {alert("伺服器發生錯誤，請稍後再試。");});
+        // }
+        
+       
+        $(document).ready(function(){  
+            $("#create_user").click(function(){
+                var email         = $('#create_email').val();
+                var password    = $('#create_password').val();
+                firebase.auth().createUserWithEmailAndPassword(email, password).catch((error) => {
+                  // Handle Errors here.
+                  const errorCode = error.code;
+                  const errorMessage = error.message;
+                  // ...
+                  alert(errorMessage)
+                }).then(function (error) { if (error.code != 400) alert("成功創建用戶認證！");location.href="./index.html" });
+            });                         
+        });         
+
+
+        // $(document).ready(function(){
+        //     /* 建立使用者 */
+        //     $("#create_user").click(function(){
+        //         var id          = $('#create_id').val();
+        //         var name          = $('#create_name').val();
+        //         var email       = $('#create_email').val();
+        //         var password        = $('#create_password').val(); 
+        //         writeUserData(id, name, email, password);
+        //     });
+        // });         
+    </script>
+
+</head>
+
+<style>
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+    margin-top:10%;
+}
+
+</style>
+<body class="text-center">
+    <div class="form-signin">
+    <h1 class="h3 mb-3 font-weight-normal">Please sign up</h1>
+    <label for="inputEmail" class="sr-only">Email address</label>
+    <input type="email" id="create_email" class="form-control" placeholder="Email address" required="" autofocus="">
+    <label for="inputPassword" class="sr-only">Password</label>
+    <input type="password" id="create_password" class="form-control" placeholder="Password" required="">
+    <div class="checkbox mb-3">
+    <label>
+      <input type="checkbox" value="remember-me"> Remember me
+    </label>
+  </div>
+  <div class="checkbox mb-3">
+    <a href="./index.html">返回登入</a>
+  </div>
+  <div id="data"></div>
+  <button id="create_user" class="btn btn-lg btn-primary btn-block" type="submit">Sign up</button>
+</div>
+
+
+</body>
+</html>
